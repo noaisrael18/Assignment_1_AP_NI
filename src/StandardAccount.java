@@ -24,16 +24,10 @@ public class StandardAccount implements IAccount{
         Balance += amount;
     }
     public double Withdraw(double amount){
-        double allowed_amount = - CreditLimit + Balance;
-        if (amount <= allowed_amount) {
-            Balance -= amount;
-            return amount;
-        }
-        else {
-            Balance -= allowed_amount;
-            System.out.println("Requested amount exceeds limit.");
-            return allowed_amount;
-        }
+            double maxWithdrawal = Balance - CreditLimit; // Maximum that can be withdrawn
+            double withdrawal_amount = Math.min(amount, maxWithdrawal);
+            Balance -= withdrawal_amount;
+            return withdrawal_amount;
     }
 
     public double GetCurrentBalance() {

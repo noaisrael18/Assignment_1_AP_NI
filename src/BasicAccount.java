@@ -1,7 +1,7 @@
 public class BasicAccount extends StandardAccount{
 
     // State
-    double WithdrawalLimit;
+    protected double WithdrawalLimit;
 
     // Constructor
     public BasicAccount (int accountNumber,double withdrawalLimit) {
@@ -12,23 +12,15 @@ public class BasicAccount extends StandardAccount{
 
     // Behavior - only those diff. to Standard Account
     public double Withdraw(double amount){
-        // If there's not enough balance to withdraw requested amount, just withdraw whole balance :
-        double allowed_amount = Balance;
-        if (Balance - amount < CreditLimit){
-            Balance -= allowed_amount;
-            return allowed_amount;
+        // Limit the withdrawal to the minimum between requested amount and the set withdrawal limit:
+        double withdrawal_amount = Math.min(amount,WithdrawalLimit );
+        // Make sure it doesn't exceed the account balance
+        withdrawal_amount = Math.min(withdrawal_amount, Balance);
 
-        // If withdrawal amount is smaller than limit, withdraw requested amount:
-        } else if (amount < WithdrawalLimit) {
-            Balance -= amount;
-            return amount;
-        }
-        else {
-            Balance -= WithdrawalLimit;
-            System.out.println("Requested amount exceeds limit.");
-            return WithdrawalLimit;
-        }
+        // Once the withdrawal amount has been "authorized", deduct the withdrawal amount from the balance
+        Balance -=  withdrawal_amount;
+        // Return the amount that was actually withdrawn
+        return  withdrawal_amount;
     }
-
 
 }

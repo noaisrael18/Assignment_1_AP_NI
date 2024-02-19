@@ -18,7 +18,7 @@ public class Main {
 
         // Initiating new Basic Account
         BasicAccount myAccount2 = new BasicAccount(45091, 100);
-        myAccount2.Deposit(500);
+        //myAccount2.Deposit(500);
         System.out.println("My Basic Account balance is " + myAccount2.GetCurrentBalance() + " ILS");
         // Withdrawing an amount
         double w2 = myAccount2.Withdraw(500);
@@ -32,7 +32,7 @@ public class Main {
         System.out.println("My Premium Account balance is " + myAccount3.GetCurrentBalance() + " ILS");
         // Withdrawing an amount
         double w3 = myAccount3.Withdraw(900);
-        System.out.println("You have withdrawn " + w2 + " ILS");
+        System.out.println("You have withdrawn " + w3 + " ILS");
         // Checking new balance
         System.out.println("My new Premium Account balance is " + myAccount3.GetCurrentBalance() + " ILS");
         // Retrieving account number
